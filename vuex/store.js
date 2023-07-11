@@ -1,8 +1,14 @@
 /**
- * 原理：就是就用户传入的state和其他改变state的方法，创建一个store，并
- * 利用Vue构造函数，创建一个组件实例vm（没有模板），包含用户store的state的响应式数据，
- * 并将这个store挂载到根组件上，这个用户store包含了vm和改变state的方法
- * 其他组件用到这个vm的状态时，就会进行依赖收集，当commit改变状态后，那么对于的依赖就会自动执行了，从而做到，视图全局更新了
+ * 大致原理：
+ * - 就是根据用户传入的state和其他改变state的方法的options对象创建一个store，
+ * - 利用Vue构造函数，创建一个组件实例vm（没有模板），包含用户state的响应式数据
+ *   ```
+ *      data: {
+ *        state: options.state
+ *      }
+ *   ```
+ * - 将这个store挂载到根组件上($store = 用户的store)
+ * - 其他组件用到这个vm的state时，就会进行依赖收集，当commit改变状态后，那么对应的依赖就会自动执行了，从而做到视图更新
  */
 import { Vue } from "./index";
 
@@ -11,9 +17,8 @@ export class Store {
   constructor(options) {
     this.options = options || {};
     // 将用户的state => vue实例
-    // 这模板中用到了 vuex的vm实例，
+    // 在模板中用到了 vuex 的vm实例，就会进行依赖收集
     this.vm = new Vue({
-      //vue对data中的数据进行了依赖收集，因此data中的数据是响应式的
       data: {
         state: options.state,
       },
