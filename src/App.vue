@@ -10,7 +10,7 @@
     <button @click="pushitem">pushitem mutation commit</button>
     <div>=============</div>
     <div>actions age {{ $store.state.age }}</div>
-    <button @click="actionMethod">increment action dispatch</button>
+    <button @click="actionMethod">increment async action dispatch</button>
   </div>
 </template>
 

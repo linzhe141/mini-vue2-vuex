@@ -10,8 +10,7 @@
  * - 将这个store挂载到根组件上($store = 用户的store)
  * - 其他组件用到这个vm的state时，就会进行依赖收集，当commit改变状态后，那么对应的依赖就会自动执行了，从而做到视图更新
  */
-import { Vue } from "./index";
-
+let Vue = null;
 // 暴露给用户配置store的类
 export class Store {
   constructor(options) {
@@ -64,4 +63,22 @@ export class Store {
       fn(context, payload);
     }
   }
+}
+
+// vue的插件机制
+export function install(_Vue) {
+  Vue = _Vue;
+  // 全局注册一个混入，影响注册之后所有创建的每个 Vue 实例。
+  // 所有子组件都是继承Vue，所以都会执行
+  Vue.mixin({
+    beforeCreate() {
+      if (this.$options.store) {
+        // 代表就是根组件
+        this.$store = this.$options.store;
+      } else if (this.$options.parent && this.$options.parent.$store) {
+        // 代表就是子组件
+        this.$store = this.$options.parent.$store;
+      }
+    },
+  });
 }
