@@ -1,6 +1,6 @@
 # 实现`Vue2`简易版的`Vuex`插件
 
-这是一个简单的 Vue2 的 Vuex 的实现，包含如下功能：
+这是 Vue2 简易版 Vuex 的实现，包含如下功能：
 
 - getters
 - mutations
