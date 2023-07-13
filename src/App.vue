@@ -16,19 +16,19 @@
 
 <script>
 export default {
-  name: "App",
+  name: 'App',
   methods: {
     increment() {
       const age = this.$store.state.age;
-      this.$store.commit("SET_AGE", age + 1);
+      this.$store.commit('SET_AGE', age + 1);
     },
     pushitem() {
-      this.$store.commit("PUSH_ITEM", 1);
+      this.$store.commit('PUSH_ITEM', 1);
     },
     actionMethod() {
       const age = this.$store.state.age;
-      this.$store.dispatch("asyncSetAge", age + 1);
-    },
-  },
+      this.$store.dispatch('asyncSetAge', age + 1);
+    }
+  }
 };
 </script>

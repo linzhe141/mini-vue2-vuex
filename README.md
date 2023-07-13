@@ -19,8 +19,8 @@
   ```js
   this.vm = new Vue({
     data: {
-      state: options.state,
-    },
+      state: options.state
+    }
   });
   ```
 
