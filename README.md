@@ -6,12 +6,12 @@
 - mutations
 - actions
 
-## TODO
+### TODO
 
 - getter 的计算属性
 - modules 模块化
 
-大致原理：
+### 大致原理：
 
 - 就是根据用户传入的 state 和其他改变 state 的方法的 options 对象创建一个 store，
 - 利用 Vue 构造函数，创建一个组件实例 vm（没有模板），包含用户 state 的响应式数据
